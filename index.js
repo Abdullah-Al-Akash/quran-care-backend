@@ -41,6 +41,14 @@ async function run() {
                         const course = await courseCollection.insertOne(newCourse);
                         res.send(course);
                 })
+
+                // Delete Course:
+                app.delete('/course/:id', async (req, res) => {
+                        const id = req.params.id;
+                        const query = { id: +id };
+                        const deleteCourse = await courseCollection.deleteOne(query);
+                        res.send(deleteCourse);
+                })
         }
         finally {
 
